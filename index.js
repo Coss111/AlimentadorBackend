@@ -17,7 +17,7 @@ const PUERTO = 3000
 
 const conexion = mysql.createConnection({
     host: 'localhost',
-    database: 'ferreteria',
+    database: 'alimentador',
     user: 'root',
     password: ''
 })
@@ -35,202 +35,246 @@ app.get('/', (req, res) => {
     res.send('API')
 })
 
-app.get('/totalRows', (req, res) => {
-    const query = `SELECT COUNT(*) AS totalRows FROM productos;`
-    conexion.query(query, (error, result) => {
-        if (error) return console.error(error.message)
+/*RUTAS PARA TABLA SCHEDULE*/
 
-        if (result.length > 0) {
-            res.json(result)
-        } else {
-            res.json(`No hay datos en la tabla`)
-        }
-    })
-})
 
-app.get('/productos', (req, res) => {
-    const query = `SELECT * FROM productos;`
+app.get('/schedule', (req, res) => {
+    const query = `SELECT * FROM schedule;`
     conexion.query(query, (error, resultado) => {
         if (error) return console.error(error.message)
 
         if (resultado.length > 0) {
             res.json(resultado)
         } else {
-            res.json(`No hay registros de productos`)
+            res.json(`No hay registros de horarios`)
         }
     })
 })
 
-app.get('/productos/:id', (req, res) => {
+app.get('/schedule/:id', (req, res) => {
     const {
         id
     } = req.params
 
-    const query = `SELECT * FROM productos WHERE id_producto=${id};`
+    const query = `SELECT * FROM schedule WHERE id_schedule=${id};`
     conexion.query(query, (error, resultado) => {
         if (error) return console.error(error.message)
 
         if (resultado.length > 0) {
             res.json(resultado)
         } else {
-            res.json(`No hay productos`)
+            res.json(`No hay horarios`)
         }
     })
 })
 
-app.post('/productos/agregar', (req, res) => {
+app.post('/schedule/agregar', (req, res) => {
     const usuario = {
-        nombre: req.body.nombre,
-        precio: req.body.precio
+        tipo: req.body.tipo,
+        horario: req.body.horario,
     }
 
-    const query = `INSERT INTO productos SET ?`
+    const query = `INSERT INTO schedule SET ?`
     conexion.query(query, usuario, (error) => {
         if (error) return console.error(error.message)
 
-        res.json(`Se insertó correctamente el producto`)
+        res.json(`Se insertó correctamente el horario`)
     })
 })
 
-app.post('/productos/comprar/1', (req, res) => {
-    const usuario = {
-        nombre: 'Caja de herramientas',
-        precio: 40
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente la caja de herramientas`)
-    })
-})
-
-app.post('/productos/comprar/2', (req, res) => {
-    const usuario = {
-        nombre: 'Cinta métrica',
-        precio: 10
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente la Cinta métrica`)
-    })
-})
-
-app.post('/productos/comprar/3', (req, res) => {
-    const usuario = {
-        nombre: 'Martillo de carpintero',
-        precio: 18
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente el Martillo de carpintero`)
-    })
-})
-
-app.post('/productos/comprar/4', (req, res) => {
-    const usuario = {
-        nombre: 'Alicate universal',
-        precio: 15
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente el Alicate universal`)
-    })
-})
-
-app.post('/productos/comprar/5', (req, res) => {
-    const usuario = {
-        nombre: 'Pintura acrílica',
-        precio: 8
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente la Pintura acrílica`)
-    })
-})
-
-app.post('/productos/comprar/6', (req, res) => {
-    const usuario = {
-        nombre: 'Guantes de seguridad',
-        precio: 8
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente los Guantes de seguridad`)
-    })
-})
-
-app.post('/productos/comprar/7', (req, res) => {
-    const usuario = {
-        nombre: 'Cinta adhesiva de doble cara',
-        precio: 5
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente la Cinta adhesiva de doble cara`)
-    })
-})
-
-app.post('/productos/comprar/8', (req, res) => {
-    const usuario = {
-        nombre: 'Tornillos y tuercas surtidos',
-        precio: 5
-    }
-
-    const query = `INSERT INTO productos SET ?`
-    conexion.query(query, usuario, (error) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se compro correctamente los Tornillos y tuercas surtidos`)
-    })
-})
-
-
-app.put('/productos/actualizar/:id', (req, res) => {
+app.put('/schedule/actualizar/:id', (req, res) => {
     const {
         id
     } = req.params
     const {
-        nombre,
-        precio
+        tipo,
+        horario
     } = req.body
 
-    const query = `UPDATE productos SET nombre='${nombre}', precio='${precio}' WHERE id_producto='${id}';`
+    const query = `UPDATE schedule SET tipo='${tipo}', horario='${horario}' WHERE id_schedule='${id}';`
     conexion.query(query, (error) => {
         if (error) return console.error(error.message)
 
-        res.json(`Se actualizó correctamente el producto`)
+        res.json(`Se actualizó correctamente el horario`)
     })
 })
 
-app.delete('/productos/borrar/:id', (req, res) => {
+
+app.delete('/schedule/borrar/:id', (req, res) => {
     const {
         id
     } = req.params
 
-    const query = `DELETE FROM productos WHERE id_producto=${id};`
+    const query = `DELETE FROM schedule WHERE id_schedule=${id};`
     conexion.query(query, (error) => {
         if (error) console.error(error.message)
 
-        res.json(`Se eliminó correctamente el producto`)
+        res.json(`Se eliminó correctamente el horario`)
     })
 })
+
+/*****************************************************/
+
+/*RUTAS PARA TABLA CLEANINGALERTS*/
+
+app.get('/cleaningalerts', (req, res) => {
+    const query = `SELECT * FROM cleaningalerts;`
+    conexion.query(query, (error, resultado) => {
+        if (error) return console.error(error.message)
+
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.json(`No hay registros de alertas de limpieza`)
+        }
+    })
+})
+
+app.get('/cleaningalerts/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+
+    const query = `SELECT * FROM cleaningalerts WHERE id_cleaning=${id};`
+    conexion.query(query, (error, resultado) => {
+        if (error) return console.error(error.message)
+
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.json(`No hay alertas de limpieza`)
+        }
+    })
+})
+
+app.post('/cleaningalerts/agregar', (req, res) => {
+    const usuario = {
+        tipo: req.body.tipo,
+        fechaHora: req.body.horario,
+        limpiado: req.body.limpiado,
+    }
+
+    const query = `INSERT INTO cleaningalerts SET ?`
+    conexion.query(query, usuario, (error) => {
+        if (error) return console.error(error.message)
+
+        res.json(`Se insertó correctamente la alerta de limpieza`)
+    })
+})
+
+app.put('/cleaningalerts/actualizar/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+    const {
+        tipo,
+        fechaHora,
+        limpiado
+    } = req.body
+
+    const query = `UPDATE cleaningalerts SET tipo='${tipo}', fechaHora='${fechaHora}', limpiado='${limpiado}' WHERE id_cleaning='${id}';`
+    conexion.query(query, (error) => {
+        if (error) return console.error(error.message)
+
+        res.json(`Se actualizó correctamente la alerta de limpieza`)
+    })
+})
+
+
+app.delete('/cleaningalerts/borrar/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+
+    const query = `DELETE FROM cleaningalerts WHERE id_cleaning=${id};`
+    conexion.query(query, (error) => {
+        if (error) console.error(error.message)
+
+        res.json(`Se eliminó correctamente la alerta de limpieza`)
+    })
+})
+
+/*****************************************************/
+
+
+/*RUTAS PARA TABLA DISPENSINGLOG*/
+
+
+app.get('/dispensinglog', (req, res) => {
+    const query = `SELECT * FROM dispensinglog;`
+    conexion.query(query, (error, resultado) => {
+        if (error) return console.error(error.message)
+
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.json(`No hay registros de dispensador`)
+        }
+    })
+})
+
+app.get('/dispensinglog/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+
+    const query = `SELECT * FROM dispensinglog WHERE id_dispensing=${id};`
+    conexion.query(query, (error, resultado) => {
+        if (error) return console.error(error.message)
+
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.json(`No hay dispensador`)
+        }
+    })
+})
+
+app.post('/dispensinglog/agregar', (req, res) => {
+    const usuario = {
+        tipo: req.body.tipo,
+        disponibilidad: req.body.disponibilidad,
+        fechaHora: req.body.fechaHora,
+    }
+
+    const query = `INSERT INTO dispensinglog SET ?`
+    conexion.query(query, usuario, (error) => {
+        if (error) return console.error(error.message)
+
+        res.json(`Se insertó correctamente el dispensador`)
+    })
+})
+
+app.put('/dispensinglog/actualizar/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+    const {
+        tipo,
+        disponibilidad,
+        fechaHora
+    } = req.body
+
+    const query = `UPDATE dispensinglog SET tipo='${tipo}', disponibilidad='${disponibilidad}', fechaHora='${fechaHora}' WHERE id_dispensing='${id}';`
+    conexion.query(query, (error) => {
+        if (error) return console.error(error.message)
+
+        res.json(`Se actualizó correctamente el dispensador`)
+    })
+})
+
+
+app.delete('/dispensinglog/borrar/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+
+    const query = `DELETE FROM dispensinglog WHERE id_dispensing=${id};`
+    conexion.query(query, (error) => {
+        if (error) console.error(error.message)
+
+        res.json(`Se eliminó correctamente el dispensador`)
+    })
+})
+
+/*****************************************************/
