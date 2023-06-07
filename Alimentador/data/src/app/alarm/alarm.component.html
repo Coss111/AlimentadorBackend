@@ -1,0 +1,28 @@
+<h5>Configurar alarma</h5>
+
+<form class="align-items-center justify-content-center text-center">
+  <div>
+    <label for="day">Día: </label>
+    <select id="day" name="day" [(ngModel)]="selectedDay">
+      <option value="lunes">Lunes</option>
+      <option value="martes">Martes</option>
+      <option value="miércoles">Miércoles</option>
+      <option value="jueves">Jueves</option>
+      <option value="viernes">Viernes</option>
+      <option value="sábado">Sábado</option>
+      <option value="domingo">Domingo</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="hour">Hora: </label>
+    <input type="number" id="hour" name="hour" [(ngModel)]="selectedHour" min="0" max="23">
+  </div>
+
+  <div>
+    <label for="minute">Minutos: </label>
+    <input type="number" id="minute" name="minute" [(ngModel)]="selectedMinute" min="0" max="59">
+  </div>
+
+  <button type="submit" (click)="saveAlarm()">Guardar Alarma</button>
+</form>

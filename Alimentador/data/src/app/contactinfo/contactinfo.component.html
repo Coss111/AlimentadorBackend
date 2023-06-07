@@ -1,0 +1,29 @@
+<div class="grid-view">
+  <div class="card text-center">
+    <div class="card-header fw-bold fs-5 text-success">
+      <!-- {{ header }} -->
+    </div>
+
+    <div class="overflow-hidden d-flex justift-content-center align-items-center">
+      <img [src]="imageSrc" alt="" class="card-img-top">
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title title "> {{ nombre }}</h5>
+      <!-- <h6 class="card-subtitle my-2 text-primary">{{ availableProducts }} unidades disponibles </h6> -->
+      <!-- <p class="card-text description"> {{ description }} </p> -->
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title text-primary"> +591
+        <span class="text-success">{{ phone }}</span> 
+      </h5>
+    </div>
+
+    <div class="card-footer d-grid gap-2">
+      <button class="btn btn-outline-success" type="button" (click)="linkeo(linkelin)"> LinkedIn</button>
+    </div>
+
+  </div>
+
+</div>

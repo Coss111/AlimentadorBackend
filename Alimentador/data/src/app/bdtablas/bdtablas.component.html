@@ -1,0 +1,104 @@
+<div class="container align-items-center align-content-center">
+    <h2>Tabla Dispensador</h2>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 ">
+        <!-- <form class="form-inline">
+          <fieldset class="form-group col-sm-11"></fieldset>
+          <fieldset class="form-group col-sm-1">
+               <a class="btn btn-primary" [routerLink]="['/productos/agregar']">+</a>
+          </fieldset>
+        </form> -->
+        <table class="table w-75mx-auto  table-hover my-shadow">
+            <thead>
+                <tr class="row">
+                  <th class="col-sm-1"></th>
+                  <th class="col-sm-2"> Id_dispensing </th>
+                  <th class="col-sm-3"> Tipo </th>
+                  <th class="col-sm-3"> Disponibilidad </th>
+                  <th class="col-sm-3"> Fecha Y Hora</th>
+                </tr>
+              </thead>
+          <tbody>
+            <tr *ngFor="let tabla1 of dispensinglog | async" class="row">
+                <td class="col-sm-1"></td>
+              <td class="col-sm-2"><i>{{ tabla1.id_dispensing }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla1.tipo }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla1.disponibilidad }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla1.fechaHora }}</i> </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <h2>Tabla Horario</h2>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 ">
+        <!-- <form class="form-inline">
+          <fieldset class="form-group col-sm-11"></fieldset>
+          <fieldset class="form-group col-sm-1">
+               <a class="btn btn-primary" [routerLink]="['/productos/agregar']">+</a>
+          </fieldset>
+        </form> -->
+        <table class="table w-75 mx-auto  table-hover my-shadow">
+            <thead>
+                <tr class="row">
+                  <th class="col-sm-2"></th>
+                  <th class="col-sm-3"> id_schedule </th>
+                  <th class="col-sm-3"> Tipo </th>
+                  <th class="col-sm-3"> Horario</th>
+                </tr>
+              </thead>
+          <tbody>
+            <tr *ngFor="let tabla2 of scheduleModel | async" class="row">
+                <td class="col-sm-2"></td>
+              <td class="col-sm-3"><i>{{ tabla2.id_schedule }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla2.tipo }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla2.horario }}</i> </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <h2>Tabla Alertas</h2>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 ">
+        <!-- <form class="form-inline">
+          <fieldset class="form-group col-sm-11"></fieldset>
+          <fieldset class="form-group col-sm-1">
+               <a class="btn btn-primary" [routerLink]="['/productos/agregar']">+</a>
+          </fieldset>
+        </form> -->
+        <table class="table w-75 mx-auto  table-hover my-shadow">
+            <thead>
+                <tr class="row">
+                  <th class="col-sm-1"></th>
+                  <th class="col-sm-2"> id_cleaning </th>
+                  <th class="col-sm-3"> Tipo </th>
+                  <th class="col-sm-4"> FechaHora</th>
+                  <th class="col-sm-2"> Limpiado</th>
+                </tr>
+              </thead>
+          <tbody>
+            <tr *ngFor="let tabla3 of cleaningModel | async" class="row">
+                <td class="col-sm-1"></td>
+              <td class="col-sm-2"><i>{{ tabla3.id_cleaning }}</i></td>
+              <td class="col-sm-3"><i>{{ tabla3.tipo }}</i></td>
+              <td class="col-sm-4"><i>{{ tabla3.fechaHora }}</i> </td>
+              <td class="col-sm-2"><i>{{ tabla3.limpiado }}</i> </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br>
+
+  </div>

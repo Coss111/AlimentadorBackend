@@ -1,0 +1,74 @@
+<div class="information">
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button custom-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          Funcion Manual
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <h5>ServoMotor Comida</h5>
+          <table class="table w-50 mx-auto align-items-center justify-content-center text-center">
+            <td class="col-sm-1"></td>
+            <td class="col-sm-5">
+                <a class="btn btn-outline-success">Abrir Compuerta</a> 
+            </td>
+            <td class="col-sm-5">
+                <a class="btn btn-outline-danger">Cerrar Compuerta</a>
+            </td>
+            <td class="col-sm-1"></td>
+          </table>
+
+          <br>
+
+          <h5>Bomba de Agua</h5>
+          <table class="table w-50 mx-auto align-items-center justify-content-center text-center">
+            <td class="col-sm-1"></td>
+            <td class="col-sm-5">
+                <a class="btn btn-outline-success">Encender Bomba</a> 
+            </td>
+            <td class="col-sm-5">
+                <a class="btn btn-outline-danger">Cerrar Bomba</a>
+            </td>
+            <td class="col-sm-1"></td>
+          </table>
+          
+          
+          <!--(click)="  borrarProducto(producto.id_producto)" -->
+
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed custom-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+          aria-expanded="false" aria-controls="collapseTwo">
+          Alarma
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <app-alarm></app-alarm>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed custom-btn" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          ¿Qué información se obtendrá?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          la frecuencia con la que se dispensa la comida y el agua, los momentos específicos del día en que esto ocurre,
+          y cualquier variación en estos patrones con el tiempo. Esta información podría ser útil para los dueños de
+          mascotas y los veterinarios para entender mejor las necesidades dietéticas y de hidratación de la mascota, así
+          como para identificar cualquier cambio inusual que pueda indicar un problema de salud.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

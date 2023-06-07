@@ -1,0 +1,18 @@
+  <div class="container-fluid d-flex justify-content-around align-items-center">
+
+    
+    
+
+    <div class="row g-5">
+      <div class="col-3"  *ngFor="let contact of nacho" >
+        <app-contactnacho [id]="contact.id" [imageSrc]="contact.imageSrc" [nombre]="contact.nombre" [phone]="contact.phone" [linkelin]="contact.linkelin"></app-contactnacho>
+  
+      </div>
+      <div class="col-3"  *ngFor="let contact of contactos" >
+        <app-contactinfo [id]="contact.id" [imageSrc]="contact.imageSrc" [nombre]="contact.nombre" [phone]="contact.phone" [linkelin]="contact.linkelin"></app-contactinfo>
+  
+      </div>
+    </div>
+
+  </div>
+
